@@ -6,7 +6,8 @@ has_many :favorites
 belongs_to :user
 has_many :photos, dependent: :destroy
 
-has_one_attached :image
+has_many_attached :image
 
-accepts_nested_attributes_for :photos
+# accepts_nested_attributes_for :photos
+
 end

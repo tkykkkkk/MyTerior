@@ -1,5 +1,5 @@
 class User::PostsController < ApplicationController
-  brfore_action :authenticate_user!
+  # brfore_action :authenticate_user!
   
   def new
     @post = Post.new
@@ -8,20 +8,21 @@ class User::PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
-    if @post.photos.present?
+    # if @post.photos.present?
      @post.save
-     flash[:notice] = "投稿に成功しました"
-     redirect_to root_path
-    else
-     @posts = Post.all
-     flash[:alert] = "投稿に失敗しました"
-     redirect_to root_path
-    # render :index
-    end 
+    # flash[:notice] = "投稿に成功しました"
+     redirect_to user_posts_path
+    # else
+    # @posts = Post.all
+    # flash[:alert] = "投稿に失敗しました"
+    # redirect_to root_path
+    # # render :index
+    # end 
      
   end 
 
   def index
+    @post = Post.all
   end
 
   def show
@@ -35,7 +36,7 @@ class User::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:caption, photos_attributes: [:image]) 
+    params.require(:post).permit(:caption, images: []) 
     # .merge(user_id: current_user.id)
   end 
   

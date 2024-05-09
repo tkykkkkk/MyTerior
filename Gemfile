@@ -59,5 +59,9 @@ gem 'devise', '~> 4.9'
 
 gem 'kaminari','~> 1.2.1'
 
+gem "mini_magick"
+
+gem 'carrierwave', '~> 2.0'
+
 
 

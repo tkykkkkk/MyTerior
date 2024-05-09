@@ -1,34 +1,46 @@
-// .navbar {
-//     background-color: #fff;
-//     border-bottom: 1px solid rgba(0, 0, .0975);
-//     height: 77px;
+//  .profile-icon {
+//       background-image: url("M.Terior.png");
+//       height: 50px; 
+//       width: 50px;
+//       background-size: cover;
+//       }
+      
+.myterior_header{
+    background-image: url("MyTerior_header.png");
+      height: 400px; 
+      width: 100%;
+      background-size: contain;
+      background-position: center;
+}
+
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, .0975);
+    height: 77px;
     
-//   &__brand {
-//     height: 35px;
-//     width: 176px;
-//     background-size: 114px;
-//     }
+  &__brand {
+    height: 35px;
+    width: 176px;
+    background-size: 114px;
+    }
     
-//   &__mainLogo {
-//   }
+  &__mainLogo {
+  }
   
-//   &-nav {
-//     & > li {
-//       margin-left: 20px;
-//       &:first-child {
-//         margin-left: 0;
-//       }
+  &-nav {
+    & > li {
+      margin-left: 20px;
+      &:first-child {
+        margin-left: 0;
+      }
       
-//       .commonNavIcon {
-//         height: 24px;
-//         width: 24px;
-//         background-size: 22px !important;
-//         background-repeat: no-repeat;
-//       }
+      .commonNavIcon {
+        height: 24px;
+        width: 24px;
+        background-size: 22px !important;
+        background-repeat: no-repeat;
+      }
       
-//       .profile-icon {
-//         background-image: url("~parts3.png");
-//       }
-//     }
-//   }
-// }
+    }
+  }
+}

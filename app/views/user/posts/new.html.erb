@@ -1,9 +1,7 @@
 <h1>画像投稿フォーム</h1>
 <%= form_with model: @post, url: user_posts_path do |f| %>
-  
-  <%= f.fields_for :photos do |i| %>
-  <%= i.file_field :image, accept: "image/*" %>
-  <% end %>
+
+  <%= f.file_field :images, multiple: true %>
   
   <%= f.label :caption %>
   <%= f.text_area :caption %>
