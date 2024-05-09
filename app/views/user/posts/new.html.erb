@@ -1,14 +1,16 @@
 <h1>画像投稿フォーム</h1>
 <%= form_with model: @post, url: user_posts_path do |f| %>
-  <h4>画像投稿</h4>
-  <%= f.file_field :image, accept: "image/*" %>
   
-  <h4>説明</h4>
+  <%= f.fields_for :photos do |i| %>
+  <%= i.file_field :image, accept: "image/*" %>
+  <% end %>
+  
+  <%= f.label :caption %>
   <%= f.text_area :caption %>
   
-  <h4>間取り</h4>
+  <span>間取り<span>
   
-  <h4>タグ</h4>
+  <span>タグ<span>
   
   <%= f.submit '投稿を確認する'%>
 <% end %>
