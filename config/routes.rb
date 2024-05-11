@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-   devise_for :users, skip: [:passwords], controllers: {
-    registraions: "user/registrations",
+   devise_for :users, controllers: {
+    registrations: "user/registrations",
     sessions: 'user/sessions'
   }
 
@@ -22,10 +22,13 @@ Rails.application.routes.draw do
  
   namespace :user do
     
-    resources :posts, only: [:new, :create,:index, :show, :edit, :update] do
-        resources :post_comments, only: [:create]
-        resources :photos, only: [:create]
-    end
+   resources :posts, only: %i(new create index) do
+    resources :photos, only: %i(create)
+  end
+    get 'my_page/:id', to: 'users#show'
+#   get 'my_page/:id', to: 'users#show'
+#   get 'edit/my_page/:id', to: 'users#edit'
+#   patch 'update/my_page/:id', to: 'users#update'
+   
   end 
-  get '/my_page/:id', to: 'user#show', as: 'user'
 end

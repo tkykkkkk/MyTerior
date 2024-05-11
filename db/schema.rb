@@ -122,11 +122,10 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "room_layout_id", null: false
-    t.text "caption", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_layout_id"], name: "index_posts_on_room_layout_id"
+    t.string "caption"
+    t.string "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00007fba278fe628>"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -180,7 +179,6 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
   add_foreign_key "post_comments", "users"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
-  add_foreign_key "posts", "room_layouts"
   add_foreign_key "posts", "users"
   add_foreign_key "rooms", "users"
 end

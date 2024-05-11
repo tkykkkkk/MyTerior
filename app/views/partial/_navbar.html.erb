@@ -2,8 +2,7 @@
    <div class="profile-icon"></div>
   <div class="container-fluid ">
      <a class="navbar-brand" href="/">
-       <%#= image_tag 'MyTerior_header.png', alt: 'Logo' ,height: '70' %>
-      <span class="navbar__brand navbar__mainLogo" style="bold">MyTerior</span>
+      <span class="navbar__brand navbar__mainLogo" style=""> <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '70'%></span>
      </a> 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -35,8 +34,8 @@
         </li>
        <% elsif user_signed_in? %>
         <li>
-          <%= link_to home_path, class: 'nav-link text-dark' do %>
-          ホーム
+          <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
+          マイページ
           <% end %>
         </li>
         <li>
@@ -63,11 +62,11 @@
           <% end %>
         </li>
         
-        <li>
-          <%= link_to "#", class: 'nav-link text-dark' do %>
-           <i class="fa-solid fa-house"></i>
+         <li>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+          ログアウト
           <% end %>
-        </li> 
+        </li>
         
        <% else %>
         <li>

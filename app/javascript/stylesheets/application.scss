@@ -1,9 +1,6 @@
 @use '~bootstrap/scss/bootstrap';
 
 @import "layouts/navbar";
-
-// @import "common";
-
-// @import "user/devise"; 
-
+@import "common";
+@import "users/devise"; 
 @import "users/show";

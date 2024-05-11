@@ -2,7 +2,7 @@
 
 class User::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  #before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -20,9 +20,11 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  #def update
+    #update_resource(resource, user_params)
+    #build_resource(user_params)
+    #super
+  #end
 
   # DELETE /resource
   # def destroy
@@ -38,7 +40,20 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+   protected
+   
+   def update_resource(resource, params)
+     resource.update_without_current_password(params)
+   end 
+   
+   def after_update_path_for(resource)
+       user_path(resource)
+   end 
+   
+#   def user_params
+#       # :name パラメーターを許可する
+#       params.require(:user).permit(:name, :profile_image, :introduction)
+#   end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -46,9 +61,9 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+#   def configure_account_update_params
+#     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile_image, :introduction])
+#   end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)

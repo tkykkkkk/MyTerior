@@ -1,5 +1,5 @@
 class User::PostsController < ApplicationController
-  # brfore_action :authenticate_user!
+   before_action :authenticate_user!
   
   def new
     @post = Post.new
@@ -8,21 +8,20 @@ class User::PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
-    # if @post.photos.present?
-     @post.save
-    # flash[:notice] = "投稿に成功しました"
-     redirect_to user_posts_path
-    # else
-    # @posts = Post.all
-    # flash[:alert] = "投稿に失敗しました"
-    # redirect_to root_path
-    # # render :index
-    # end 
-     
+    @post.user_id = current_user.id
+    
+    if @post.photos.present?
+      @post.save!
+      redirect_to user_posts_path
+      flash[:notice] = "投稿が保存されました"
+    else
+      render :new
+      flash[:alert] = "投稿に失敗しました"
+    end
   end 
 
   def index
-    @post = Post.all
+    @posts = Post.limit(10).order('created_at DESC')
   end
 
   def show
@@ -33,11 +32,9 @@ class User::PostsController < ApplicationController
   def edit
   end
   
-  private
-  
-  def post_params
-    params.require(:post).permit(:caption, images: []) 
-    # .merge(user_id: current_user.id)
-  end 
+ private
+    def post_params
+      params.require(:post).permit(:caption, photos_attributes: [:image]).merge(user_id: current_user.id)
+    end
   
 end
