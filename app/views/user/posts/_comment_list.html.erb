@@ -1,0 +1,15 @@
+<% post.post_comments.each do |comment| %>
+  <div class="mb-2">
+    <% if post_comment.user == current_user %>
+      <%= link_to post_comment_path(post.id, post_comment), method: :delete, remote: true, class: "delete-comment" do %>
+      <i class="fa-solid fa-x"></i>
+      <% end %>
+    <% end %>
+    <span>
+      <strong>
+        <%= link_to post_comment.user.name, user_path(post_comment.user), class: "no-text-decoration black-color" %>
+      </strong>
+    </span>
+    <span><%= post_comment.post_comment %></span>
+  </div>
+<% end %>

@@ -11,8 +11,8 @@ class User::PostsController < ApplicationController
     @post.user_id = current_user.id
     
     if @post.photos.present?
-      @post.save!
-      redirect_to user_posts_path
+      @post.save
+      redirect_to posts_path
       flash[:notice] = "投稿が保存されました"
     else
       render :new
@@ -21,15 +21,27 @@ class User::PostsController < ApplicationController
   end 
 
   def index
-    @posts = Post.limit(10).order('created_at DESC')
+    @posts = Post.all.order('created_at DESC')
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
+    
     @post_comment = PostComment.new
+    @post_comments = @post.post_comments
   end
 
   def edit
+  end
+
+  def destroy
+    @post = Post.find_by(id: params[:id])
+      if @post.user == current_user
+        flash[:notice] = "投稿が削除されました" if @post.destroy
+      else
+        flash[:alert] = "投稿の削除に失敗しました"
+      end
+      redirect_to root_path
   end
   
  private

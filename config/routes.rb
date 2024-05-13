@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-   devise_for :users, controllers: {
+  devise_for :users, controllers: {
     registrations: "user/registrations",
     sessions: 'user/sessions'
   }
@@ -20,12 +20,13 @@ Rails.application.routes.draw do
  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
  
-  namespace :user do
+  scope module: :user do
     
-   resources :posts, only: %i(new create index) do
+   resources :posts, only: %i(new create index show destroy) do
     resources :photos, only: %i(create)
+    resources :post_comments, only: %i(create destroy)
   end
-    get 'my_page/:id', to: 'users#show'
+    get 'my_page/:id', to: 'users#show', as: :user
 #   get 'my_page/:id', to: 'users#show'
 #   get 'edit/my_page/:id', to: 'users#edit'
 #   patch 'update/my_page/:id', to: 'users#update'
