@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   
-  devise_for :users, controllers: {
+  devise_for :users, skip: [:passwords], controllers: {
     registrations: "user/registrations",
-    sessions: 'user/sessions'
+    sessions: 'user/sessions',
+    passwords: 'user/passwords'
   }
 
   devise_for :admins, skip: [:registrations, :passwords],  controllers: {
@@ -26,7 +27,8 @@ Rails.application.routes.draw do
     resources :photos, only: %i(create)
     resources :post_comments, only: %i(create destroy)
   end
-    get 'my_page/:id', to: 'users#show', as: :user
+  # resources :users, only: %i(show edit update)
+   resources :users, only: %i(show edit update)
 #   get 'my_page/:id', to: 'users#show'
 #   get 'edit/my_page/:id', to: 'users#edit'
 #   patch 'update/my_page/:id', to: 'users#update'
