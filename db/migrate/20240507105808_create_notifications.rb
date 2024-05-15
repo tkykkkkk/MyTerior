@@ -4,7 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
       t.integer :visitor_id
       t.integer :visited_id
       t.references :post, foreign_key: true
-      t.references :postcomment, foreign_key: true
+      t.references :post_comment, foreign_key: true
       t.string :action
       t.boolean :checked, default: false 
       
