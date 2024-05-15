@@ -2,15 +2,22 @@
 <html>
   <head>
     <title>MyTerior</title>
+    <script src="https://kit.fontawesome.com/81ef2a8530.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <!--<nav>...</nav>の間のコード-->
+   <%= render 'partial/navbar' %>
+   <%= flash[:notice] %>
+   <%= yield %>
+   
   </body>
 </html>

@@ -1,0 +1,34 @@
+<%#= render  'partial/header' %>
+<!--後ほどレイアウトで整える-->
+<div class="main">
+  <div class="card devise-card">
+    <div class="form-wrap">
+      <div class="form-group text-center">
+        <h2 class="logo-img mx-auto"></h2>
+      </div>
+   <div class="btn-wrapper col-12 mx-auto">
+    <div class="row">
+         <%= link_to new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" do %>
+         ログインはこちら 
+         <% end %>
+    </div>
+    
+    <div class="row">
+         <%= link_to  new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up " do %>
+         新規登録はこちら
+         <% end %>
+    </div>
+  
+    <div class="row">
+         <%= link_to users_guest_sign_in_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up " do %>
+         ゲストログインはこちら
+         <% end %>
+         <!--ユーザーのページを作ったら、マイページ編集できないようにするカリキュラムゲストログインのところで調べられる-->
+    </div>
+    
+   </div>
+  </div>
+ </div>
+</div>
+    
+  

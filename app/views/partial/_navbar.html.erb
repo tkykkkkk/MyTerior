@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+   <div class="profile-icon"></div>
+  <div class="container-fluid ">
+     <%= link_to posts_path, class: "navbar-brand" do %>
+      <span class="navbar__brand navbar__mainLogo" style=""> <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '70'%></span>
+     <% end %> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+       <%if admin_signed_in? %>
+        <li>
+          <%= link_to "#", class: 'nav-link text-dark' do %>
+          管理者ルール
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to "#", class: 'nav-link text-dark' do %>
+          投稿管理
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#", class: 'nav-link text-dark' do %>
+        　ユーザー管理
+          <% end %>
+        </li>
+        
+        <li>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+          ログアウト
+          <% end %>
+        </li>
+       <% elsif user_signed_in? %>
+        <li>
+          <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
+          マイページ
+          <% end %>
+        </li>
+        <li>
+          <%= link_to posts_path, class: 'nav-link text-dark' do %>
+          投稿一覧
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to "#", class: 'nav-link text-dark' do %>
+          チャット
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to "#", class: 'nav-link text-dark' do %>
+          通知
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to "#", class: 'nav-link text-dark' do %>
+          いいね一覧
+          <% end %>
+        </li>
+        
+         <li>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+          ログアウト
+          <% end %>
+        </li>
+        
+       <% else %>
+        <li>
+          <%= link_to about_path,class: 'nav-link text-dark' do %>
+            About
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to posts_path, class: 'nav-link text-dark' do %>
+            投稿一覧
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_user_session_path,class: 'nav-link text-dark' do %>
+            ログイン
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to new_user_registration_path,class: 'nav-link text-dark' do %>
+            新規登録
+          <% end %>
+        </li>
+        
+       <% end %>
+      </ul>
+      <% if user_signed_in? %>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav ml-md-auto align-items-center">
+          <li>
+          <%= link_to "投稿", new_post_path, class: 'btn btn-primary' %>
+          </li>
+         </ul>
+        </div>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">🔍</button>
+        </form>
+      <% end %>
+    </div>
+  </div>
+</nav>

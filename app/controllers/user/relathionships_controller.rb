@@ -1,0 +1,2 @@
+class RelathionshipsController < ApplicationController
+end
