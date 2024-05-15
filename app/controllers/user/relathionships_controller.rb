@@ -1,2 +1,2 @@
-class RelathionshipsController < ApplicationController
+class  User::RelathionshipsController < Devise::RegistrationsController
 end
