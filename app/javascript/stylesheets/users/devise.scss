@@ -55,4 +55,10 @@ footer {
   .devise-card {
     background-color: #fafafa;
   }
+  
+  .res-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

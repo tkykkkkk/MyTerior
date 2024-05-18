@@ -84,13 +84,13 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
     t.integer "visitor_id"
     t.integer "visited_id"
     t.integer "post_id"
-    t.integer "postcomment_id"
+    t.integer "post_comment_id"
     t.string "action"
     t.boolean "checked", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_comment_id"], name: "index_notifications_on_post_comment_id"
     t.index ["post_id"], name: "index_notifications_on_post_id"
-    t.index ["postcomment_id"], name: "index_notifications_on_postcomment_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.text "introduction"
     t.string "profile_photo"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -171,7 +172,7 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
   add_foreign_key "favorites", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "notifications", "postcomments"
+  add_foreign_key "notifications", "post_comments"
   add_foreign_key "notifications", "posts"
   add_foreign_key "photos", "posts"
   add_foreign_key "post_comments", "posts"

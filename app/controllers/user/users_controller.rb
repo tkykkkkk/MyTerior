@@ -14,7 +14,7 @@ class User::UsersController < ApplicationController
     
     if @user.update!(user_params)
       flash[:notice]="プロフィールの変更に成功しました"
-    redirect_to user_path(@user)
+      redirect_to user_path(@user)
     else
       flash[:notice]="プロフィールの変更に失敗しました"
       render :edit
@@ -38,7 +38,7 @@ class User::UsersController < ApplicationController
   #   @post = Post.find(params[:post_id])
   # end
   def user_params
-    params.require(:user).permit(:name, :email )
+    params.require(:user).permit(:name, :email, :introduction)
   end 
   
 end

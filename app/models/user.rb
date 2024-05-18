@@ -7,21 +7,28 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  has_one_attached :profile_image
-  
+         
   validates :name, presence: true, length: { maximum: 50 }
+  validates :introduction, length: { maximum: 50 }
   
-  def update_without_current_password(params, *options)
-    if params[:password].blank? && params[:password_confirmation].blank?
-       params.delete(:password)
-       params.delete(:password_confirmation)
-    end
-    
-    result = self.update(params, *options)
-    clean_up_passwords
-    result
+  has_one_attached :profile_photo
+  
+  def get_profile_photo
+    (profile_photo.attached?) ?
+    profile_photo: 'no_photo.jpg'
   end 
+  
+  # パスワード変更任意機能
+  # def update_without_current_password(params, *options)
+  #   if params[:password].blank? && params[:password_confirmation].blank?
+  #     params.delete(:password)
+  #     params.delete(:password_confirmation)
+  #   end
+    
+  #   result = self.update(params, *options)
+  #   clean_up_passwords
+  #   result
+  # end 
          
   GUEST_USER_EMAIL = "guest@example.com"
 

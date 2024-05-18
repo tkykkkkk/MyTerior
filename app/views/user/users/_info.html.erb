@@ -1,0 +1,29 @@
+
+
+<div class="card-wrap">
+  <div class="card">
+      <div class="sidebar bg-light" style="padding: 10px; border-radius: 5px;">
+        <table class='table'>
+          <tr><%= image_tag user.get_profile_photo, class: "round-img" %></tr>
+          <tr>
+            <th>ネーム</th>
+            <th><%= user.name %></th>
+          </tr>
+          <tr>
+            <th>紹介文</th>
+      	    <th><%= user.introduction %></th>
+          </tr>
+          <tr>
+            <th></th>
+      	    <th>
+      	     <% if user_signed_in? %>
+               <%= link_to "投稿", new_post_path, class: 'btn btn-success' %>
+             <% end %>
+      	    </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+</div>
+
+

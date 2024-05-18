@@ -39,16 +39,6 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-
-   protected
-   
-   def update_resource(resource, params)
-     resource.update_without_current_password(params)
-   end 
-   
-   def after_update_path_for(resource)
-       user_path(resource)
-   end 
    
 #   def user_params
 #       # :name パラメーターを許可する

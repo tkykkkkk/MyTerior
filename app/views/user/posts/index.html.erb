@@ -1,19 +1,7 @@
 <main class="container-fluid">
   <div class="row">
     <!-- サイドバー -->
-    <div class="col-md-3">
-      <div class="sidebar bg-light" style="padding: 10px; border-radius: 5px;">
-        <h4>サイドバー</h4>
-        <!-- サイドバーの内容をここに追加 -->
-        <ul class="list-group">
-          <li class="list-group-item">リンク1</li>
-          <li class="list-group-item">リンク2</li>
-          <li class="list-group-item">リンク3</li>
-          <!-- さらにリンクを追加 -->
-        </ul>
-      </div>
-    </div>
-    
+    <%= render 'user/users/info', user: current_user %>
     <!-- メインコンテンツ -->
     <div class="col-md-9">
       <div class="container">

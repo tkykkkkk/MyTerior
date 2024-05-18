@@ -4,14 +4,7 @@
 //       width: 50px;
 //       background-size: cover;
 //       }
-      
-.myterior_header{
-    background-image: url("../images/MyTerior_header.png");
-      height: 400px; 
-      width: 100%;
-      background-size: contain;
-      background-position: center;
-}
+
 
 .navbar {
     background-color: #fff;
@@ -19,7 +12,7 @@
     height: 77px;
     
   &__brand {
-    height: 35px;
+    height: 50%;
     width: 176px;
     background-size: 114px;
     }
