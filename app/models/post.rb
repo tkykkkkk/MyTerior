@@ -9,4 +9,8 @@ has_many :photos, dependent: :destroy
 accepts_nested_attributes_for :photos
 validates :caption, presence: true
 
+def favorited_by?(user)
+ favorites.exists?(user_id: user.id)
+end 
+
 end

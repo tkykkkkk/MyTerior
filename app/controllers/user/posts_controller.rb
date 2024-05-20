@@ -32,7 +32,21 @@ class User::PostsController < ApplicationController
   end
 
   def edit
-  end
+      @post = Post.find(params[:id])
+    unless @post.user.id == current_user.id
+      redirect_to book_path(@post.id)
+    end
+  end 
+  
+  def update
+      @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path (@post.id), notice: "投稿を編集しました"
+    else
+      render :edit
+    end
+  end 
+  
 
   def destroy
     @post = Post.find_by(id: params[:id])

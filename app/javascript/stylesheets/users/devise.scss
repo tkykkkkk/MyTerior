@@ -48,6 +48,17 @@ footer {
   margin-top: auto;
 }
 
+/* 追加部分 */
+.card-body {
+  background-color: #f8f9fa; /* グレーの背景色 */
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0; /* 上部の境界線 */
+}
+
+.card-body .card-text {
+  color: #6c757d; /* グレーのテキスト色 */
+}
+
 @media screen and (max-width: 768px) {
   .main {
     padding: 75px 0;
@@ -60,5 +71,13 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  /* 追加部分 */
+  .card-body {
+    padding: 0.75rem;
+  }
+  .card-body .card-text {
+    font-size: 0.75rem; /* 小さめのフォントサイズ */
   }
 }

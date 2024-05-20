@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+    get 'users/index'
+    get 'users/show'
+    get 'users/edit'
+  end
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "user/registrations",
     sessions: 'user/sessions',
@@ -23,10 +28,12 @@ Rails.application.routes.draw do
  
   scope module: :user do
     
-   resources :posts, only: %i(new create index show destroy) do
+   resources :posts, only: %i(new create index show edit update destroy) do
     resources :photos, only: %i(create)
     resources :post_comments, only: %i(create destroy)
+    resource :favorite, only: %i(create destroy)
   end
+    resources :favorites, only: [:index]
   # resources :users, only: %i(show edit update)
    resources :users, only: %i(show edit update)
 #   get 'my_page/:id', to: 'users#show'
@@ -34,4 +41,14 @@ Rails.application.routes.draw do
 #   patch 'update/my_page/:id', to: 'users#update'
    
   end 
+  
+   namespace :admin do
+     resources :users, only: %i(index show edit update)
+     resources :posts, only: %i(index show edit update destroy) do
+       resources :post_comments, only: %i(destroy)
+     end
+     resources :genres, only: [:index, :create, :edit, :update]
+     
+     
+   end 
 end
