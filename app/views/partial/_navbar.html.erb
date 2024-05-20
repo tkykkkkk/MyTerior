@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
    <div class="profile-icon"></div>
   <div class="container-fluid h-100">
-     <%= link_to posts_path, class: "navbar-brand h-100" do %>
+     <%= link_to home_path, class: "navbar-brand h-100" do %>
       <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '100%'%></span>
      <% end %> 
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to "#", class: 'nav-link text-dark' do %>
+        <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
           ユーザー管理
         <% end %>
       </li>
@@ -69,16 +69,6 @@
         <% end %>
       </li>
     <% else %>
-      <li class="nav-item">
-        <%= link_to about_path, class: 'nav-link text-dark' do %>
-          About
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to posts_path, class: 'nav-link text-dark' do %>
-          投稿一覧
-        <% end %>
-      </li>
       <li class="nav-item">
         <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
           ログイン

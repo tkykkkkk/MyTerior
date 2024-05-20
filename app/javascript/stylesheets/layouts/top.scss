@@ -1,0 +1,68 @@
+.main-wrapper {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.section {
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.stack-24 {
+  margin-bottom: 24px;
+}
+
+.width-max-960 {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.h1-top {
+  font-size: 2.5em;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.callout {
+  font-weight: 700;
+  color: #000;
+}
+
+.w-layout {
+  margin: 10px 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.w-button {
+  margin: 0 10px;
+}
+
+.b-top-img {
+  margin-top: 30px;
+  background-image: image-url("MyTerior_Header2.png");
+  background-repeat: no-repeat;
+  height: 800px;
+  background-size: contain;
+  background-position: center;
+}

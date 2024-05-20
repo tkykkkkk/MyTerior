@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "user/registrations",
     sessions: 'user/sessions',
@@ -16,8 +11,15 @@ Rails.application.routes.draw do
   }
   
   root to: 'user/homes#top'
-    get 'about' => 'user/homes#about'
     get 'home' => 'user/homes#home'
+    
+  namespace :admin do
+     resources :users, only: %i(index show edit update)
+     resources :posts, only: %i(index show edit update destroy) do
+       resources :post_comments, only: %i(destroy)
+     end
+     resources :genres, only: [:index, :create, :edit, :update]
+   end 
          
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
@@ -42,13 +44,4 @@ Rails.application.routes.draw do
    
   end 
   
-   namespace :admin do
-     resources :users, only: %i(index show edit update)
-     resources :posts, only: %i(index show edit update destroy) do
-       resources :post_comments, only: %i(destroy)
-     end
-     resources :genres, only: [:index, :create, :edit, :update]
-     
-     
-   end 
 end
