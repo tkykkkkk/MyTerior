@@ -37,7 +37,11 @@ Rails.application.routes.draw do
   end
     resources :favorites, only: [:index]
   # resources :users, only: %i(show edit update)
-   resources :users, only: %i(show edit update)
+   resources :users, only: %i(show edit update) do 
+     resource :relathionships, only: %i(create destroy)
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
+    end 
 #   get 'my_page/:id', to: 'users#show'
 #   get 'edit/my_page/:id', to: 'users#edit'
 #   patch 'update/my_page/:id', to: 'users#update'

@@ -49,7 +49,7 @@
 <div class="container">
   <div class="row">
         <% @posts.each do |post| %>
-          <div class="col-md-3">
+          <div class="col-lg-2 col-md-3 offset-md-1">
             <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 180px;">
               <%= link_to post_path(post) do %>
               <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
