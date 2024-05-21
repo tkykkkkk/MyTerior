@@ -5,9 +5,8 @@
         <h2>インテリアを紹介しよう</h2>
       </div>
       <div class="card-body">
-        <%= form_with model: @post, url: posts_path, class: "upload-images p-0 border-0" do |f| %>
+        <%= form_with model: @post, url: posts_path, class: "upload-images p-0 border-0", local: true do |f| %>
           <div class="mb-3">
-
             <%= f.fields_for :photos do |i| %>
               <%= i.file_field :image, id: "image-upload", class: "image-upload" %>
             <% end %>
@@ -24,8 +23,6 @@
           </div>
           <%= f.submit "投稿する", class: "btn btn-primary" %>
         <% end %>
-        
-        
       </div>
     </div>
   </div>

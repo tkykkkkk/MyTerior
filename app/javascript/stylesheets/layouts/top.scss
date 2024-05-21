@@ -58,11 +58,13 @@
   margin: 0 10px;
 }
 
-.b-top-img {
+.container.b-top-img {
   margin-top: 30px;
-  background-image: image-url("MyTerior_Header2.png");
+  background-image: url('MyTerior_Logo.png');
   background-repeat: no-repeat;
-  height: 800px;
+  width: 100%;
+  height: 100%;
   background-size: contain;
   background-position: center;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 }

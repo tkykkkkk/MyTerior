@@ -1,9 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light">
    <div class="profile-icon"></div>
   <div class="container-fluid h-100">
+    <% if user_signed_in? %>
      <%= link_to home_path, class: "navbar-brand h-100" do %>
       <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '100%'%></span>
      <% end %> 
+    <% else %>
+     <%= link_to root_path, class: "navbar-brand h-100" do %>
+      <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '100%'%></span>
+     <% end %> 
+    <% end %>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>

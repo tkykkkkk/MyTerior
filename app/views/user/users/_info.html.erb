@@ -7,19 +7,35 @@
           <tr><%= image_tag user.get_profile_photo, class: "round-img" %></tr>
           <tr>
             <th>ネーム</th>
-            <th><%= user.name %></th>
+            <td><%= user.name %></td>
           </tr>
           <tr>
             <th>紹介文</th>
-      	    <th><%= user.introduction %></th>
+      	    <td><%= user.introduction %></td>
           </tr>
           <tr>
+          <th>follows</th>
+          <td>
+              <%= link_to user_followings_path(user) do %>
+              <h6><%= user.followings.count %></h6>
+              <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>followers</th>
+          <td>
+              <%= link_to user_followers_path(user) do %>
+              <h6><%= user.followers.count %></h6>
+              <% end %>
+          </td>
+        </tr>
+          <tr>
             <th></th>
-      	    <th>
+      	    <td>
       	     <% if user_signed_in? %>
                <%= link_to "投稿", new_post_path, class: 'btn btn-success' %>
              <% end %>
-      	    </th>
+      	    </td>
           </tr>
         </table>
       </div>
