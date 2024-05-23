@@ -5,7 +5,7 @@
       <th></th>
       <th>ネーム</th>
       <th>email:</th>
-      <!--<th>ステータス</th>-->
+      <th>ステータス</th>
     </tr>
   </thead>
   
@@ -22,13 +22,13 @@
         <% end %>
       </td>
       <td><%= user.email %></td>
-      <!--<td>-->
-      <!--  <%# if customer.is_active %>-->
-      <!--    <div class="text-success"><b>有効</b></div>-->
-      <!--  <%# else %>-->
-      <!--    <div class="text-secondary"><b>退会</b></div>-->
-      <!--  <%# end %>-->
-      <!--</td>-->
+      <td>
+        <% if user.is_active %>
+          <div class="text-success"><b>有効</b></div>
+        <% else %>
+          <div class="text-secondary"><b>退会</b></div>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>

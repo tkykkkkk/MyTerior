@@ -23,15 +23,15 @@
                   </div>
                 </td>
               </tr>
-              <!--<tr>-->
-              <!--  <th scope="col">会員ステータス</th>-->
-              <!--  <td>-->
-              <!--    <%#= f.radio_button :is_active, "true" %>-->
-              <!--    <%#= f.label :is_active_true, "有効" %>-->
-              <!--    <%#= f.radio_button :is_active, "false" %>-->
-              <!--    <%#= f.label :is_active_false, "退会" %>-->
-              <!--  </td>-->
-              <!--</tr>-->
+              <tr>
+                <th scope="col">会員ステータス</th>
+                <td>
+                  <%= f.radio_button :is_active, "true" %>
+                  <%= f.label :is_active_true, "有効" %>
+                  <%= f.radio_button :is_active, "false" %>
+                  <%= f.label :is_active_false, "退会" %>
+                </td>
+              </tr>
           </table>
         </div>
         <%= f.submit '変更を保存', class: "btn btn-success w-25" %>

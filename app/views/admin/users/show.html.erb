@@ -14,13 +14,18 @@
           bio:<%= @user.introduction %>
         </p>
       </div>
-      <% if @user == current_user %>
         <div class="row">
           <p>
             <%= @user.email %>
           </p>
+          <p class="col-md-3 text-center">
+          <% if @user.is_active == true %>
+          <span class="text-success">有効</span>
+          <% else %>
+          <span class="text-secondary">退会</span>
+          <% end %>
+          </p>
         </div>
-      <% end %>
     </div>
   </div>
 </div>

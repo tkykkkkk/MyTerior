@@ -41,6 +41,10 @@ Rails.application.routes.draw do
      resource :relathionships, only: %i(create destroy)
       get "followings" => "relathionships#followings", as: "followings"
       get "followers" => "relathionships#followers", as: "followers"
+    #退会確認画面
+      get '/check' => 'users#check'
+      patch '/withdraw' => 'users#withdraw'
+      
     end 
     
     resources :messages, only: [:create]
