@@ -7,7 +7,7 @@
    <div class="row">
     <!-- サイドバー -->
   <aside class="col-md-3 col-12 h-100">
-     <%= render 'user/users/info', user: current_user %>
+     <%= render 'user/users/info', user: @post.user %>
   </aside>
   
   
@@ -23,14 +23,17 @@
             <strong><%= @post.user.name %></strong>
           <% end %>
           
+          <div class="follow-btn">
            <% if current_user != @post.user %>
               <% if current_user.following?(@post.user) %>
-                <%= link_to "フォロー外す", user_relathionships_path(@post.user.id), method: :delete %>
+                <%= link_to "フォロー外す", user_relathionships_path(@post.user.id), method: :delete, class: "btn btn-small btn-info mr-2" %>
               <% else %>
-                <%= link_to "フォローする", user_relathionships_path(@post.user.id), method: :post%>
+                <%= link_to "フォローする", user_relathionships_path(@post.user.id), method: :post, class: "btn btn-small btn-success mr-2"%>
               <% end %>
           <% end %>
-        
+         </div>
+         
+         
           <% if @post.user_id == current_user.id %>
             <div class="ml-auto mx-0 my-auto edit-delete-icons">
               <%= link_to edit_post_path(@post.id), class: "icon-link" do %>
