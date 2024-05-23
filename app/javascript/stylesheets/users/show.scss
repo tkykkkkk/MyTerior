@@ -1,9 +1,9 @@
-.profile-wrap{
-  margin:40px 0px;
+.profile-wrap {
+  margin: 40px 0px;
 }
 
-.round-img{
-  border-radius:50%;
+.round-img {
+  border-radius: 50%;
   width: 120px;
   height: 120px;
 }
@@ -19,15 +19,100 @@
 }
 
 .setting {
-//   background-image: url("~parts4.png");
   background-repeat: no-repeat;
   height: 24px;
   width: 24px;
   background-color: transparent;
   margin: 18px 0 0 10px;
-  background-size: 22px!important;
+  background-size: 22px !important;
   border: none;
   &:hover {
     cursor: pointer;
+  }
+}
+
+.btn-small {
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  padding: 0 10px;
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center;
+}
+
+.follow-info {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.mr-3 {
+  margin-right: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.chat-action {
+  margin-left: 15px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .profile-wrap {
+    margin: 20px 0px;
+  }
+  
+  .round-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .edit-profile-btn, .btn-small {
+    height: 22px;
+    line-height: 22px;
+    font-size: 10px;
+    padding: 0 8px;
+  }
+
+  .setting {
+    height: 20px;
+    width: 20px;
+    margin: 15px 0 0 5px;
+  }
+
+  .follow-info {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .round-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .edit-profile-btn, .btn-small {
+    height: 20px;
+    line-height: 20px;
+    font-size: 8px;
+    padding: 0 6px;
+  }
+
+  .setting {
+    height: 18px;
+    width: 18px;
+    margin: 12px 0 0 3px;
+  }
+
+  .follow-info {
+    margin-right: 5px;
   }
 }

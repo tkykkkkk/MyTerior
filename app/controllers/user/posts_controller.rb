@@ -32,7 +32,21 @@ class User::PostsController < ApplicationController
   end
 
   def edit
-  end
+      @post = Post.find(params[:id])
+    unless @post.user.id == current_user.id
+      redirect_to post_path(@post.id)
+    end
+  end 
+  
+  def update
+      @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path (@post.id), notice: "投稿を編集しました"
+    else
+      render :edit
+    end
+  end 
+  
 
   def destroy
     @post = Post.find_by(id: params[:id])
@@ -41,7 +55,7 @@ class User::PostsController < ApplicationController
       else
         flash[:alert] = "投稿の削除に失敗しました"
       end
-      redirect_to root_path
+      redirect_to user_path(current_user.id)
   end
   
  private

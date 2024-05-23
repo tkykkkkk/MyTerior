@@ -1,3 +1,51 @@
+/* サイドバーのスタイル */
+aside {
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* メインコンテンツのスタイル */
+main {
+  padding: 15px;
+}
+
+/* アイテムのスタイル */
+.item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+/* カード画像のスタイル */
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 767px) {
+  .item {
+    margin: 10px auto;
+  }
+
+  aside {
+    margin-bottom: 20px;
+  }
+
+  main {
+    margin-top: 20px;
+  }
+}
+
+/* 追加されたクラスのスタイル */
 .post-profile-icon {
   height: 40px;
   width: 40px;
@@ -21,27 +69,10 @@
   margin: 12px 0;
 }
 
-// .love {
-//   background-image: url("~parts5");
-//   background-repeat: no-repeat;
-//   height: 36px;
-//   width: 36px;
-//   background-size: 36px !important;
-// }
-
-// .comment {
-//   margin-left: 8px;
-//   background-image: url("~parts6");
-//   background-repeat: no-repeat;
-//   height: 36px;
-//   width: 36px;
-//   background-size: 40px !important;
-// }
-
 .post-time {
-  margin:0;
-  color:#999;
-  font-size:10px;
+  margin: 0;
+  color: #999;
+  font-size: 10px;
 }
 
 .post-sub-text {
@@ -49,19 +80,23 @@
   color: #262626;
 }
 
-.delete-post-icon {
+.edit-delete-icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.delete-post-icon,
+.edit-post-icon {
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
   background-size: 20px !important;
   color: #262626;
   font-size: 20px;
-}
-
-.delete-comment {
-  width: 11px;
-  height: 11px;
-  float: right;
-  margin: 5px 0 0 10px;
-  background-size: 11px !important;
 }

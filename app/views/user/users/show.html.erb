@@ -1,64 +1,100 @@
 <div class="profile-wrap">
   <div class="row">
     <div class="col-md-4 text-center">
-       <%= image_tag @user.get_profile_photo, class: "round-img" %>
+      <%= image_tag @user.get_profile_photo, class: "round-img" %>
     </div>
     <div class="col-md-8 res-flex">
-      <div class="row">
-        <h1><%= @user.name %></h1>
-        <!--プロフィール編集権限-->
-        <% if @user == current_user %>
-        <%= link_to "プロフィールを編集", edit_user_path, class: "btn btn-outline-dark common-btn edit-profile-btn" %>
-        <button type="button" class="setting" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-bars"></i></button>
+      <div class="row align-items-center">
+        <h1 class="mr-3"><%= @user.name %></h1>
+        
+        <% if current_user != @user %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォロー外す", user_relathionships_path(@user.id), method: :delete, class: "btn btn-small btn-info mr-2" %>
+          <% else %>
+            <%= link_to "フォローする", user_relathionships_path(@user.id), method: :post, class: "btn btn-small btn-success mr-2" %>
+          <% end %>
         <% end %>
         
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">設定</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span><i class="fa-solid fa-x"></i></span>
-                </button>
+        <% if @user == current_user %>
+          <%= link_to "プロフィールを編集", edit_user_path, class: "btn btn-outline-dark common-btn edit-profile-btn mr-2" %>
+          <button type="button" class="setting" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        <% end %>
+      </div>
+      
+      <div class="row mt-3 align-items-center">
+        <div class="follow-info mr-3">
+          <%= link_to user_followings_path(@user), class: "text-dark" do %>
+            <h6>フォロー数: <%= @user.followings.count %></h6>
+          <% end %>
+        </div>
+        <div class="follow-info">
+          <%= link_to user_followers_path(@user), class: "text-dark" do %>
+            <h6>フォロワー数: <%= @user.followers.count %></h6>
+          <% end %>
+        </div>
+        <% unless @user.id == current_user.id %>
+            <% if @isRoom == true %>
+              <div class="chat-action">
+                <a href="/rooms/<%= @roomID %>" class="btn btn-primary btn-small">チャットへ</a>
               </div>
-              <div class="list-group text-center">
-                <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action" %>
-                <%= link_to "キャンセル", "#", class: "list-group-item list-group-item-action", "data-dismiss": "modal" %>
+            <% else %>
+              <div class="chat-action">
+                <%= form_for @room do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: @user.id %>
+                  <% end %>
+                  <%= f.submit "チャットを始める", class:"btn btn-primary btn-small" %>
+                <% end %>
               </div>
+            <% end %>
+          <% end %>
+      </div>
+      
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">設定</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span><i class="fa-solid fa-x"></i></span>
+              </button>
+            </div>
+            <div class="list-group text-center">
+              <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action" %>
+              <%= link_to "退会する", user_check_path(current_user.id), class: "list-group-item list-group-item-action" %>
+              <%= link_to "キャンセル", "#", class: "list-group-item list-group-item-action", "data-dismiss": "modal" %>
             </div>
           </div>
         </div>
       </div>
-       <div class="row">
-        <p>
-          bio:<%= @user.introduction %>
-        </p>
+      
+      <div class="row mt-3">
+        <p>bio: <%= @user.introduction %></p>
       </div>
+      
       <% if @user == current_user %>
         <div class="row">
-          <p>
-            <%= @user.email %>
-          </p>
+          <p><%= @user.email %></p>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
 <hr>
 
 <div class="container">
   <div class="row">
-        <% @posts.each do |post| %>
-          <div class="col-md-3">
-            <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 180px;">
-              <%= link_to post_path(post) do %>
-              <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
-              <% end %>
-            </div>
-          </div>
-         <% end %>
+    <% @posts.each do |post| %>
+      <div class="col-lg-2 col-md-3 offset-md-1">
+        <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 180px;">
+          <%= link_to post_path(post) do %>
+            <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+          <% end %>
+        </div>
       </div>
-    </div>
-
-      
-
+    <% end %>
+  </div>
+</div>

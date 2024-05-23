@@ -1,0 +1,47 @@
+<div class="profile-wrap">
+  <div class="row">
+    <div class="col-md-4 text-center">
+       <%= image_tag @user.get_profile_photo, class: "round-img" %>
+    </div>
+    <div class="col-md-8 res-flex">
+      <div class="row">
+        <h1><%= @user.name %></h1>
+        <!--プロフィール編集権限-->
+        <%= link_to "プロフィールを編集", edit_admin_user_path, class: "btn btn-outline-dark common-btn edit-profile-btn" %>
+      </div>
+       <div class="row">
+        <p>
+          bio:<%= @user.introduction %>
+        </p>
+      </div>
+        <div class="row">
+          <p>
+            <%= @user.email %>
+          </p>
+          <p class="col-md-3 text-center">
+          <% if @user.is_active == true %>
+          <span class="text-success">有効</span>
+          <% else %>
+          <span class="text-secondary">退会</span>
+          <% end %>
+          </p>
+        </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="container">
+  <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-3">
+            <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 180px;">
+              <%= link_to admin_post_path(post) do %>
+              <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+              <% end %>
+            </div>
+          </div>
+         <% end %>
+      </div>
+    </div>
+
