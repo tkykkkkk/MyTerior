@@ -34,7 +34,7 @@ class User::PostsController < ApplicationController
   def edit
       @post = Post.find(params[:id])
     unless @post.user.id == current_user.id
-      redirect_to book_path(@post.id)
+      redirect_to post_path(@post.id)
     end
   end 
   
@@ -55,7 +55,7 @@ class User::PostsController < ApplicationController
       else
         flash[:alert] = "投稿の削除に失敗しました"
       end
-      redirect_to root_path
+      redirect_to user_path(current_user.id)
   end
   
  private
