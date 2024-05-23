@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.boolean "is_active", default: true
     t.text "introduction"
     t.string "profile_photo"
     t.string "name"

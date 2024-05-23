@@ -1,5 +1,7 @@
 class User::UsersController < ApplicationController
-  # before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :authenticate_user!
+  
   def show
     @user = User.find_by(id: params[:id])
     @posts = @user.posts
@@ -41,6 +43,15 @@ class User::UsersController < ApplicationController
     end 
   end 
   
+  def withdraw
+    @user = User.find(current_user.id)
+    # is_active をfalseにする
+    @user.update(is_active: false)
+    reset_session
+    flash[:notice] = "退会機能を実行しました"
+    redirect_to root_path
+  end 
+  
    
    private 
   
@@ -48,17 +59,17 @@ class User::UsersController < ApplicationController
   # params.require(:user).permit(:name, :profile_image, :introduction)
   # end 
 
-  # def ensure_correct_user
-  #   @user = User.find(params[:id])
-  #   unless @user == current_user
-  #     redirect_to user_path(current_user)
-  #   end
-  # end 
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(@user)
+    end
+  end 
   # def set_post
   #   @post = Post.find(params[:post_id])
   # end
   def user_params
-    params.require(:user).permit(:name, :email, :introduction)
+    params.require(:user).permit(:name, :email, :introduction, :profile_photo, :is_active)
   end 
   
 end

@@ -28,9 +28,10 @@ class Admin::PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     if @post.destroy
         flash[:notice] = "投稿が削除されました"
+        redirect_to admin_posts_path
     else
          flash[:alert] = "投稿の削除に失敗しました"
-        redirect_to admin_post_path(@post.id)
+        render :show
     end
   end 
   

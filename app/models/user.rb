@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   # アソシエーションゾーン
@@ -28,10 +31,6 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end 
-  
-  
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
          
   validates :name, presence: true, length: { maximum: 50 }
   validates :introduction, length: { maximum: 50 }
@@ -43,17 +42,9 @@ class User < ApplicationRecord
     profile_photo: 'no_photo.jpg'
   end 
   
-  # パスワード変更任意機能
-  # def update_without_current_password(params, *options)
-  #   if params[:password].blank? && params[:password_confirmation].blank?
-  #     params.delete(:password)
-  #     params.delete(:password_confirmation)
-  #   end
-    
-  #   result = self.update(params, *options)
-  #   clean_up_passwords
-  #   result
-  # end 
+  def active_for_authentication?
+    super && (is_active == true)
+  end 
          
   GUEST_USER_EMAIL = "guest@example.com"
 

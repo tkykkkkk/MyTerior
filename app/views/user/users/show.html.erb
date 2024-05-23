@@ -35,7 +35,6 @@
           <% end %>
         </div>
         <% unless @user.id == current_user.id %>
-          <% if (current_user.following? @user) && (@user.following? current_user) %>
             <% if @isRoom == true %>
               <div class="chat-action">
                 <a href="/rooms/<%= @roomID %>" class="btn btn-primary btn-small">チャットへ</a>
@@ -51,7 +50,6 @@
               </div>
             <% end %>
           <% end %>
-        <% end %>
       </div>
       
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -65,6 +63,7 @@
             </div>
             <div class="list-group text-center">
               <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action" %>
+              <%= link_to "退会する", user_check_path(current_user.id), class: "list-group-item list-group-item-action" %>
               <%= link_to "キャンセル", "#", class: "list-group-item list-group-item-action", "data-dismiss": "modal" %>
             </div>
           </div>
