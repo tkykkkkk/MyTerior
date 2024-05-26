@@ -1,5 +1,6 @@
 class  User::RelathionshipsController < ApplicationController
     before_action :authenticate_user!
+    before_action :ensure_guest_user
     
     def create
       user = User.find(params[:user_id])
@@ -24,4 +25,12 @@ class  User::RelathionshipsController < ApplicationController
     end 
   
       
+    private
+    
+    def ensure_guest_user
+      if current_user.email == 'guest@example.com' 
+        redirect_back fallback_location: root_path, notice: "ゲストユーザーは制限されています"
+      end
+    end
+  
 end

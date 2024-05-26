@@ -42,10 +42,10 @@
 <hr>
 <div class="container">
     <div class="row">
-         <h2>新規投稿</h2>
+         <h2>新着5件</h2>
          <% @posts.each do |post| %>
-            <div class="col-md-3 col-sm-6 col-12">
-              <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 100%;">
+            <div class="col-md-2 col-sm-6 col-12">
+              <div class="item" style="margin: 5px; border: none; border-radius: 5px; width: 80%;">
                 <%= link_to(post_path(post)) do %>
                   <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
                 <% end %>
