@@ -1,6 +1,7 @@
 class User::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
   
   def show
     @user = User.find_by(id: params[:id])
@@ -63,6 +64,12 @@ class User::UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user == current_user
       redirect_to user_path(@user)
+    end
+  end 
+  
+  def ensure_guest_user
+    if current_user.email == 'guest@example.com' 
+       redirect_back fallback_location: root_path, notice: "ゲストユーザーは制限されています"
     end
   end 
   # def set_post

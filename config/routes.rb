@@ -18,11 +18,11 @@ Rails.application.routes.draw do
      resources :posts, only: %i(index show edit update destroy) do
        resources :post_comments, only: %i(destroy)
      end
-     resources :genres, only: [:index, :create, :edit, :update]
+     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    end 
          
   devise_scope :user do
-    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+    post "user/guest_sign_in", to: "user/sessions#guest_sign_in"
   end
   
  
@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     
     resources :messages, only: [:create]
     resources :rooms, only: [:create,:show, :index]
+    get "search" => "searches#search"
 #   get 'my_page/:id', to: 'users#show'
 #   get 'edit/my_page/:id', to: 'users#edit'
 #   patch 'update/my_page/:id', to: 'users#update'

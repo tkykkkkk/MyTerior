@@ -24,11 +24,11 @@
          新規登録はこちら
          <% end %>
       </div>
-      <!--<div class="w-layout">-->
-      <!--   <%#= link_to users_guest_sign_in_path, class: "button" do %>-->
-      <!--   ゲストログインはこちら-->
-      <!--   <%#end %>-->
-      <!--</div>-->
+      <div class="w-layout">
+         <%= link_to user_guest_sign_in_path, method: :post, class: "button" do %>
+         ゲストログインはこちら
+         <%end %>
+      </div>
     </div>
   </div>
 </div>

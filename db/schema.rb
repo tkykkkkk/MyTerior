@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_09_070453) do
+ActiveRecord::Schema.define(version: 2024_05_25_073630) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
@@ -122,9 +128,11 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "genre_id", null: false
     t.string "caption"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_posts_on_genre_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -180,6 +188,7 @@ ActiveRecord::Schema.define(version: 2024_05_09_070453) do
   add_foreign_key "post_comments", "users"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
+  add_foreign_key "posts", "genres"
   add_foreign_key "posts", "users"
   add_foreign_key "rooms", "users"
 end

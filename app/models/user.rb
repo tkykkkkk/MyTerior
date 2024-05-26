@@ -44,6 +44,10 @@ class User < ApplicationRecord
   
   def active_for_authentication?
     super && (is_active == true)
+  end
+  
+  def self.looks(search, word)
+      User.where("name LIKE ?", "%#{word}%")
   end 
          
   GUEST_USER_EMAIL = "guest@example.com"
@@ -53,6 +57,10 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
-  end    
+  end 
+  
+   def guest_user?
+    email == GUEST_USER_EMAIL
+   end
 
 end

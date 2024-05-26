@@ -1,0 +1,22 @@
+<h3>間取りジャンル一覧/追加</h3>
+
+<%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+<td><%= f.label :"間取り", class: "mr-3" %></td>
+<td><%= f.text_field :name, class: "mr-5" %></td>
+<td><%= f.submit :'新規投稿', class: "btn btn-primary" %></td>
+<% end %>
+
+<th>間取り一覧</th>
+<% @genres.each do |genre| %>
+<td><%= genre.name %></td>
+<td>
+    <%= link_to edit_admin_genre_path(genre.id), class: "text-dark" do %>
+    <i class="fa-regular fa-pen-to-square"></i>
+    <% end %>
+</td>
+<td>
+    <%= link_to admin_genre_path(genre.id), method: :delete, class: "text-dark" do %>
+    <i class="fa-solid fa-delete-left">削除する</i>
+    <% end %>
+</td>
+<% end %>

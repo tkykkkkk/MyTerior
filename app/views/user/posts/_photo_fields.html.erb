@@ -1,0 +1,6 @@
+<div class="nested-fields">
+  <%= f.file_field :image, class: "image-upload" %>
+  <% if f.object.image.present? %>
+    <%= link_to 'この画像を削除する', '#', class: "remove_fields" %>
+  <% end %>
+</div>

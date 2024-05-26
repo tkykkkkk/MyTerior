@@ -1,98 +1,117 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-   <div class="profile-icon"></div>
+  <div class="profile-icon"></div>
   <div class="container-fluid h-100">
     <% if user_signed_in? %>
-     <%= link_to home_path, class: "navbar-brand h-100" do %>
-      <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '100%'%></span>
-     <% end %> 
+      <%= link_to home_path, class: "navbar-brand h-100" do %>
+        <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '100%' %>
+      <% end %>
     <% else %>
-     <%= link_to root_path, class: "navbar-brand h-100" do %>
-      <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '100%'%></span>
-     <% end %> 
+      <%= link_to root_path, class: "navbar-brand h-100" do %>
+        <%= image_tag 'MyTerior_Header2.png', alt: 'Logo', height: '100%' %>
+      <% end %>
     <% end %>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse justify-content-end bg-white p-3" id="navbarSupportedContent" style="z-index: 1050;">
-  <% if user_signed_in? %>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">🔍</button>
-    </form>
-  <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <ul class="navbar-nav">
-    <% if admin_signed_in? %>
-      <li class="nav-item">
-        <%= link_to "#", class: 'nav-link text-dark' do %>
-          管理者ルール
+    <div class="collapse navbar-collapse justify-content-end bg-white p-3" id="navbarSupportedContent" style="z-index: 1050;">
+      <% if user_signed_in? %>
+        <% if current_user.email == "guest@example.com" %>
+          <!-- ゲストユーザー用のナビゲーションメニュー -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
+                ゲストページ
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                トップへ戻る
+              <% end %>
+            </li>
+          </ul>
+        <% else %>
+          <!-- 通常のユーザー用のナビゲーションメニュー -->
+          <form class="form-inline">
+            <%= form_with url: search_path, local: true, method: :get, class: "form-inline" do |f| %>
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary my-2 my-sm-0 dropbtn" type="button">
+                  <i class="fa-solid fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <%= f.select :range, options_for_select([["ユーザー", 'User'], ["投稿", 'Post'],["間取り", 'Genre']]), {}, { class: 'dropdown-select form-control' } %>
+                </div>
+              </div>
+              <%= f.text_field :word, class: "form-control mr-sm-2", placeholder: "検索" %>
+              <%= button_tag type: 'submit', class: "btn btn-outline-secondary my-2 my-sm-0" do %>
+                🔍
+              <% end %>
+            <% end %>
+          </form>
+          <ul class="navbar-nav">
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "#", class: 'nav-link text-dark' do %>
+                  管理者ルール
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
+                  投稿管理
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_genres_path, class: 'nav-link text-dark' do %>
+                  間取りジャンル
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
+                  ユーザー管理
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                  ログアウト
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "投稿", new_post_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
+                  マイページ
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to posts_path, class: 'nav-link text-dark' do %>
+                  投稿一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to rooms_path, class: 'nav-link text-dark' do %>
+                  チャット
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
         <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
-          投稿管理
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
-          ユーザー管理
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
-          ログアウト
-        <% end %>
-      </li>
-    <% elsif user_signed_in? %>
-      <li class="nav-item">
-        <% if user_signed_in? %>
-          <%= link_to "投稿", new_post_path, class: 'nav-link text-dark' %>
-        <% end %>
-      </li>
-      
-      <li class="nav-item">
-        <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
-          マイページ
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to posts_path, class: 'nav-link text-dark' do %>
-          投稿一覧
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to rooms_path, class: 'nav-link text-dark' do %>
-          チャット
-        <% end %>
-      </li>
-      <!--<li class="nav-item">-->
-      <!--  <%#= link_to "#", class: 'nav-link text-dark' do %>-->
-      <!--    通知-->
-      <!--  <%# end %>-->
-      <!--</li>-->
-      <li class="nav-item">
-        <%= link_to favorites_path, class: 'nav-link text-dark' do %>
-          いいね一覧
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
-          ログアウト
-        <% end %>
-      </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
-          ログイン
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
-          新規登録
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+      <% else %>
+        <!-- ログインしていないユーザー用のナビゲーションメニュー -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
+              ログイン
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+              新規登録
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </nav>

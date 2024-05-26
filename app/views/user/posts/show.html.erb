@@ -57,12 +57,17 @@
             <%= link_to "", "#", class: "love" %>
             <%= link_to "", "#", class: "comment" %>
           </div>
-          <div>
+          <div id="favorite_buttons_<%= @post.id %>">
             <strong><%= render "user/favorites/favorite", post: @post %></strong>
           </div>
           <div>
+            <div>
             <span><strong><%= @post.user.name %></strong></span>
             <span><%= @post.caption %></span>
+            </div>
+            <div>
+              <span>間取り:<%= @post.genre.name %></span>
+            </div>
             <%= link_to time_ago_in_words(@post.created_at).upcase + "前", "#", class: "post-time no-text-decoration" %>
             <hr>
               <div id="comment-post-<%= @post.id.to_s %>">
@@ -83,8 +88,6 @@
                   </div>
                <% end %>
             </div>
-            <%= link_to time_ago_in_words(@post.created_at).upcase + "前", post_path(@post),
-              class: "light-color post-time no-text-decoration" %>
             <hr>
             <div class="row actions" id="comment-form-post-<%= @post.id.to_s %>">
               <%= form_with model: @post_comment, url: post_post_comments_path(@post), method: :post, class: "w-100" do |f| %>
