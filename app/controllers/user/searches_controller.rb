@@ -10,7 +10,7 @@ class User::SearchesController < ApplicationController
         @genres = Genre.looks(params[:search], params[:word])
         end
         
-        render 'user/searches/search'
+        render 'user/searches/search_result'
     end 
     
 end

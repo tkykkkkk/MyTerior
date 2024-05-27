@@ -120,16 +120,23 @@ ja:
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
-      # must_have_at_least_one_photo: １枚以上画像を入れてください
+
+      must_have_at_least_one_photo: １枚以上画像を入れてください
   activerecord:
     models:
       user: ユーザー
       genre: 間取り
-      Photos: 投稿画像
+      photo: 投稿画像
     attributes: 
       post:
         genre: 間取り
-        caption: 投稿詳細
+        caption: 投稿詳
+        photos: 投稿画像
+      user:
+        email: メールアドレス
+        name: ネーム
+        password: パスワード
+        agreement: 利用規約とプライバシーポリシー
       
         
         

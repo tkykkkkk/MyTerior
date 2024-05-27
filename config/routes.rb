@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   
   root to: 'user/homes#top'
     get 'home' => 'user/homes#home'
+    get 'about' => 'user/homes#about'
+    get 'terms' => "user/homes#terms"
+    get 'users' => "user/homes#redirect_new"
     
   namespace :admin do
      resources :users, only: %i(index show edit update)

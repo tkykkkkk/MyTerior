@@ -1,13 +1,14 @@
-<% if user_signed_in? %>
-    <form class="form-inline" %>
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <%= form_with url: search_path, local: true, method: :get do |f| %>
-         <% f.text_field :word %>
-         <%= f.select :range, options_for_select([['User'], ['Post']]) %>
-         <%#= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
-         <%= f.submit do %>
-         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">🔍</button>
-         <% end %>
-         <% end %>
-    </form>
-<% end %>
+  <%= form_with url: search_path, local: true, method: :get do |f| %>
+  <div class="dropdown">
+      <button class="btn btn-outline-secondary my-2 my-sm-0 dropbtn" type="button">
+        <i class="fa-solid fa-caret-down"></i>
+      </button>
+    <div class="dropdown-content">
+      <%= f.select :range, options_for_select([["ユーザー", 'User'], ["投稿", 'Post'],["間取り", 'Genre']]), {}, { class: 'dropdown-select form-control' } %>
+    </div>
+    </div>
+      <%= f.text_field :word, class: "form-control mr-sm-2", placeholder: "検索" %>
+      <%= button_tag type: 'submit', class: "btn btn-outline-secondary my-2 my-sm-0" do %>
+        🔍
+      <% end %>
+  <% end %>

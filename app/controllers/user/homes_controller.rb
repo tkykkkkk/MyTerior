@@ -1,5 +1,5 @@
 class User::HomesController < ApplicationController
-  before_action :authenticate_user!, except: [:top]
+  before_action :authenticate_user!, except: [:top, :about, :terms, :redirect_new]
   
   def top
   end
@@ -13,4 +13,15 @@ class User::HomesController < ApplicationController
       .order('favorites_count DESC')
       .limit(10)  # 表示したいユーザー数を指定
   end 
+  
+  def about
+  end 
+  
+  def terms
+  end 
+  
+  def redirect_new
+    redirect_to new_user_registration_path
+  end 
+  
 end

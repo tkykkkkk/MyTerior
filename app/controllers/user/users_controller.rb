@@ -35,7 +35,7 @@ class User::UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     
-    if @user.update!(user_params)
+    if @user.update(user_params)
       flash[:notice]="プロフィールの変更に成功しました"
       redirect_to user_path(@user)
     else
@@ -76,7 +76,7 @@ class User::UsersController < ApplicationController
   #   @post = Post.find(params[:post_id])
   # end
   def user_params
-    params.require(:user).permit(:name, :email, :introduction, :profile_photo, :is_active)
+    params.require(:user).permit(:name, :email, :introduction, :profile_photo, :is_active, :agreement)
   end 
   
 end

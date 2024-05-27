@@ -22,7 +22,8 @@ class Post < ApplicationRecord
   private
 
   def must_have_at_least_one_photo
-    errors.add(:photos, 'must have at least one photo') if photos.blank?
+    error_message = I18n.locale == :ja ? "は１枚以上画像を入れてください" : 'must have at least one photo'
+    errors.add(:photos, error_message) if photos.blank?
   end
 end
 
