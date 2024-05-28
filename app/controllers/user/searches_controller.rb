@@ -4,11 +4,16 @@ class User::SearchesController < ApplicationController
     def search
         @range = params[:range]
         @word = params[:word]
+        unless @word.present?
+          redirect_to request.referer
+        end 
         
         if @range == "User"
         @users = User.looks(params[:search], @word).page(params[:page])
-        else
+        elsif @range == "Post"
         @posts = Post.looks(params[:search], @word).page(params[:page])
+        else
+        @genres = Genre.looks(params[:search], @word).posts.page(params[:page])
         end
     end 
 end

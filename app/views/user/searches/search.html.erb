@@ -21,7 +21,7 @@
     <h6>ユーザーは見つかりませんでした</h6>
     <% end %>
   </div>
-<% else %>
+<% elsif @range == "Post" %>
   <h4 class="text-center my-5">投稿検索　「<%= @word %>」の結果</h4>
     <div class="row justify-content-center d-flex flex-wrap">
     <% if @posts.exists? %>
@@ -32,5 +32,16 @@
       <h6>投稿は見つかりませんでした</h6>
     <% end %>
     </div>
-<% end %>
+<% else %>
+    <h4 class="text-center my-5">間取り検索　「<%= @word %>」の結果</h4>
+        <div class="row justify-content-center d-flex flex-wrap">
+        <% if @genres.exists? %>
+          <tbody>
+            <%= render 'user/posts/index', posts: @genres %>
+          </tbody>
+        <% else %>
+          <h6>投稿は見つかりませんでした</h6>
+        <% end %>
+    </div>
+ <% end %>
 </table>
