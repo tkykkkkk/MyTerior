@@ -1,6 +1,7 @@
 <div class="chat-container">
     <h2>メッセージユーザー一覧</h2>
  <table class="table table-hover table-inverse">
+   <% if  @entries.exists? %>
   <thead>
     <tr>
       <th></th>
@@ -20,9 +21,11 @@
       </tr>
     <% end %>
   </tbody>
- </table>
-
- <div class="pagination">
+   <% else %>
+    <h2>ユーザーがいません</h2>
+   <% end %>
+    <div class="pagination">
   <%= paginate @dm_users %>
- </div>
+    </div>
+ </table>
 </div>

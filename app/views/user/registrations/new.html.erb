@@ -1,3 +1,7 @@
+<div class="col-box-1">
+  <%= render "layouts/errors", obj: @user %>
+</div>
+
 <div class="main">
   <div class="card devise-card">
     <div class="form-wrap">
@@ -20,6 +24,14 @@
 
         <div class="form-group">
           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "パスワードの確認", class: "form-control" %>
+        </div>
+        
+        <div class="form-group form-check">
+          <%= f.check_box :agreement %>
+          <%= link_to terms_path do%>
+            利用規約とプライバシーポリシー
+          <% end %>
+          に同意する
         </div>
 
         <div class="actions">

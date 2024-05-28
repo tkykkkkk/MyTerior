@@ -13,12 +13,13 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'image_preview' %>
   </head>
-
-  <body>
+  <body style="position: relative;">
     <!--<nav>...</nav>の間のコード-->
-   <%= render 'partial/navbar' %>
-   <%= flash[:notice] %>
-   <%= yield %>
-   
+   <div style="min-height: 100vh; padding-bottom:66px;">
+     <%= render 'partial/navbar' %>
+     <%= flash[:notice] %>
+     <%= yield %>
+   </div>
+   <%= render 'partial/footer' %>
   </body>
 </html>

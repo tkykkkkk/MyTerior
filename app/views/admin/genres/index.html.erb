@@ -1,0 +1,62 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header text-center">
+          <h3>間取りジャンル一覧/追加</h3>
+        </div>
+        <div class="card-body">
+          <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+            <div class="form-group row">
+              <label for="genre_name" class="col-sm-2 col-form-label">間取り</label>
+              <div class="col-sm-8">
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+              <div class="col-sm-2">
+                <%= f.submit '新規投稿', class: "btn btn-primary w-100" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header text-center">
+          <th>間取り一覧</th>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>編集</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @genres.each do |genre| %>
+                <tr>
+                  <td><%= genre.name %></td>
+                  <td>
+                    <%= link_to edit_admin_genre_path(genre.id), class: "text-dark" do %>
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to admin_genre_path(genre.id), method: :delete, class: "text-dark" do %>
+                      <i class="fa-solid fa-delete-left">削除する</i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

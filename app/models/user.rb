@@ -34,6 +34,7 @@ class User < ApplicationRecord
          
   validates :name, presence: true, length: { maximum: 50 }
   validates :introduction, length: { maximum: 50 }
+  validates_acceptance_of :agreement, allow_nil: false, on: :create
   
   has_one_attached :profile_photo
   
@@ -44,6 +45,10 @@ class User < ApplicationRecord
   
   def active_for_authentication?
     super && (is_active == true)
+  end
+  
+  def self.looks(search, word)
+      User.where("name LIKE ?", "%#{word}%")
   end 
          
   GUEST_USER_EMAIL = "guest@example.com"
@@ -53,6 +58,10 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
-  end    
+  end 
+  
+   def guest_user?
+    email == GUEST_USER_EMAIL
+   end
 
 end

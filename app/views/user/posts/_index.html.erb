@@ -1,0 +1,13 @@
+ <div class="container">
+    <div class="row">
+          <% posts.each do |post| %>
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 100%;">
+                <%= link_to(post_path(post)) do %>
+                  <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+    </div>
+</div>

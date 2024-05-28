@@ -15,6 +15,7 @@
           <% end %>
         <% end %>
         
+       <% unless @user.guest_user? %> 
         <% if @user == current_user %>
           <%= link_to "プロフィールを編集", edit_user_path, class: "btn btn-outline-dark common-btn edit-profile-btn mr-2" %>
           <button type="button" class="setting" data-toggle="modal" data-target="#exampleModal">
@@ -50,6 +51,7 @@
               </div>
             <% end %>
           <% end %>
+         <% end %>   
       </div>
       
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,6 +64,7 @@
               </button>
             </div>
             <div class="list-group text-center">
+              <%= link_to "いいね一覧", favorites_path, class: "list-group-item list-group-item-action" %>
               <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action" %>
               <%= link_to "退会する", user_check_path(current_user.id), class: "list-group-item list-group-item-action" %>
               <%= link_to "キャンセル", "#", class: "list-group-item list-group-item-action", "data-dismiss": "modal" %>
@@ -69,6 +72,7 @@
           </div>
         </div>
       </div>
+       
       
       <div class="row mt-3">
         <p>bio: <%= @user.introduction %></p>
@@ -88,8 +92,8 @@
 <div class="container">
   <div class="row">
     <% @posts.each do |post| %>
-      <div class="col-lg-2 col-md-3 offset-md-1">
-        <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 180px;">
+      <div class="col-md-3 col-sm-6 col-12">
+        <div class="item" style="margin: 10px; border: none; border-radius: 5px">
           <%= link_to post_path(post) do %>
             <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
           <% end %>

@@ -1,5 +1,6 @@
 class User::RoomsController < ApplicationController
     before_action :authenticate_user!
+    before_action :ensure_guest_user
     
     def create
         @room = Room.create(user_id: current_user.id)
@@ -48,5 +49,13 @@ class User::RoomsController < ApplicationController
     # Kaminariでページネーションを適用
     @dm_users = Kaminari.paginate_array(@dm_users).page(params[:page]).per(10)
   end
+  
+  private
+  
+  def ensure_guest_user
+    if current_user.email == 'guest@example.com' 
+       redirect_back fallback_location: root_path, notice: "ゲストユーザーは制限されています"
+    end
+  end 
    
 end

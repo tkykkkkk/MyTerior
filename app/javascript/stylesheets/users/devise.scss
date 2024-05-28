@@ -44,6 +44,61 @@
   min-height: 100vh;
 }
 
+.container_about{
+  order: 2;
+  display: flex;
+  max-width: 2000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about_title{
+  font-size: 26px;
+  font-weight: 900;
+  margin-bottom: 48px;
+}
+
+.about_sub_title{
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.a_content_about{
+  line-height: 2.2;
+}
+
+.content_about_notice{
+  color: #818181;
+  font-size: .8em;
+  line-height: 1.8;
+  margin-top: 3em;
+}
+
+// .container_term{
+//   order: 2;
+//   display: flex;
+//   max-width: 2000px;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+
+// .term_title{
+//   font-size: 26px;
+//   font-weight: 900;
+//   margin-bottom: 48px;
+// }
+
+// .a_content_term{
+//   line-height: 2.2;
+// }
+
+// .term_sub_title{
+//   font-size: 20px;
+//   font-weight: 500;
+//   margin-bottom: 30px;
+// }
+
 footer {
   margin-top: auto;
 }
