@@ -1,6 +1,6 @@
 class User::HomesController < ApplicationController
-  before_action :authenticate_user!, except: [:top, :about, :terms, :redirect_new]
   
+  before_action :authenticate_user!, except: [:top, :about, :terms, :redirect_new]
   def top
   end
   
