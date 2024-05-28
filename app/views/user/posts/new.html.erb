@@ -10,27 +10,28 @@
       </div>
       <div class="card-body">
         <%= form_with model: @post, url: posts_path, class: "upload-images p-0 border-0", local: true do |f| %>
-          <div class="mb-3">
+          <div class="form-group row mt-2">
+            <div class="col-auto pr-0">
             <%= f.fields_for :photos do |photo_fields| %>
+              <%= f.label :image, "画像" %>
               <div class="nested-fields">
                 <%= photo_fields.file_field :image, id: "image-upload", class: "image-upload" %>
               </div>
             <% end %>
-            <div id="image-preview">
-              <%= image_tag 'no_image_square.jpg', id: 'noimage', class: 'preview-image' %>
-            </div> <!-- 画像プレビュー用のdivを追加 -->
+             <div id="image-preview"></div><!-- 画像プレビュー用のdivを追加 -->
+            </div>
           </div>
           
           <div class="form-group row mt-2">
-            <div class="col-auto pl-0">
-              インテリアの詳細:
+            <div class="col-auto pr-0">
+              <%= f.label :caption, "部屋の特徴を教えてください" %>
               <%= f.text_field :caption, class: "form-control border-0", placeholder: "部屋の特徴など" %>
             </div>
           </div>
           
           <div class="form-group row mt-2">
             <div class="col-auto pr-0">
-              間取り：
+              <%= f.label :genre_id, "間取り選択" %>
               <%= f.select :genre_id, options_for_select(Genre.all.map{ |genre| [genre.name, genre.id] }), { prompt: "該当の間取りを選択してください" }, { class: "form-control", name: "post[genre_id]" } %>
             </div>
           </div>

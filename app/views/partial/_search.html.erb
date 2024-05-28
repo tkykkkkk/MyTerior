@@ -1,4 +1,4 @@
-  <%= form_with url: search_path, local: true, method: :get do |f| %>
+  <%= form_with url: search_path, method: :get do |f| %>
   <div class="dropdown">
       <button class="btn btn-outline-secondary my-2 my-sm-0 dropbtn" type="button">
         <i class="fa-solid fa-caret-down"></i>
@@ -8,7 +8,7 @@
     </div>
     </div>
       <%= f.text_field :word, class: "form-control mr-sm-2", placeholder: "検索" %>
-      <%= button_tag type: 'submit', class: "btn btn-outline-secondary my-2 my-sm-0" do %>
-        🔍
-      <% end %>
+      <%= f.submit "検索", class: "btn btn-outline-secondary my-2 my-sm-0" %>
+      <%#= button_tag type: 'submit', class: "btn btn-outline-secondary my-2 my-sm-0" do %>
+      <%# end %>
   <% end %>

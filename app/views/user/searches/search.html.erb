@@ -1,0 +1,36 @@
+<h2>検索結果</h2>
+<table class="table table-hover table-inverse">
+<% if @range == "User" %>
+<h4 class="text-center my-5">ユーザー検索　「<%= @word %>」の結果</h4>
+  <div class="row justify-content-center">
+    <% if @users.exists? %>
+     <tbody>
+      <% @users.each do |user| %>
+       <tr>
+         <td>
+           <%= image_tag user.get_profile_photo, class: "post-profile-icon" %>
+         </td>
+         <td>
+           <%= link_to user_path(user.id), class: "text-dark" do %>
+           <%= user.name %>
+           <% end %>
+         </td>
+      <% end %>
+    </tbody>
+    <% else %>
+    <h6>ユーザーは見つかりませんでした</h6>
+    <% end %>
+  </div>
+<% else %>
+  <h4 class="text-center my-5">投稿検索　「<%= @word %>」の結果</h4>
+    <div class="row justify-content-center d-flex flex-wrap">
+    <% if @posts.exists? %>
+      <tbody>
+        <%= render 'user/posts/index', posts: @posts %>
+      </tbody>
+    <% else %>
+      <h6>投稿は見つかりませんでした</h6>
+    <% end %>
+    </div>
+<% end %>
+</table>
