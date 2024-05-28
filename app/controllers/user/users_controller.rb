@@ -76,7 +76,7 @@ class User::UsersController < ApplicationController
   #   @post = Post.find(params[:post_id])
   # end
   def user_params
-    params.require(:user).permit(:name, :email, :introduction, :profile_photo, :is_active, :agreement)
+    params.require(:user).permit(:name, :email, :introduction, :profile_photo, :is_active)
   end 
   
 end

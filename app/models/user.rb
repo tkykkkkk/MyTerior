@@ -34,7 +34,7 @@ class User < ApplicationRecord
          
   validates :name, presence: true, length: { maximum: 50 }
   validates :introduction, length: { maximum: 50 }
-  validates_acceptance_of :agreement, allow_nil: false, on: :create
+  validates_acceptance_of :agreement, on: :create
   
   has_one_attached :profile_photo
   
