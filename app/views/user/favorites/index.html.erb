@@ -10,25 +10,25 @@
         <h2 class="fw-light">いいね一覧</h2>
         <p class="m-3 mb-0">(全<%= @favorites.count %>件)</p>
         <hr class="heading-line mb-4">
-        <% if @favorites.any? %>
-          <div class="row">
-            <% @posts.each do |post| %>
-              <div class="col-md-3 col-sm-6 col-12 my-3">
-                <div class="card shadow-sm h-100">
-                  <%= link_to(post_path(post), class: 'no-text-decoration') do %>
-                    <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
-                  <% end %>
-                  <div class="card-body">
-                    <p class="card-text" style="font-size: 0.875rem;"><%= truncate(post.caption, length: 10) %></p>
-                    <%= render "user/favorites/favorite", post: post %>
+          <% if @favorites.any? %>
+            <div class="row">
+              <% @posts.each do |post| %>
+                <div class="col-md-3 col-sm-6 col-12 my-3">
+                  <div class="card shadow-sm h-100">
+                    <%= link_to(post_path(post), class: 'no-text-decoration') do %>
+                      <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+                    <% end %>
+                      <div class="card-body">
+                        <p class="card-text" style="font-size: 0.875rem;"><%= truncate(post.caption, length: 10) %></p>
+                        <%= render "user/favorites/favorite", post: post %>
+                      </div>
                   </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p class="text-center">いいねした投稿はまだありません。</p>
-        <% end %>
+              <% end %>
+            </div>
+          <% else %>
+        <p class="text-center">いいねした投稿はまだありません。</p>
+      <% end %>
       </div>
     </main>
   </div>

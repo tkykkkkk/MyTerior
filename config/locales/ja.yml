@@ -130,13 +130,15 @@ ja:
     attributes: 
       post:
         genre: 間取り
-        caption: 投稿詳
+        caption: 部屋の詳細
         photos: 投稿画像
       user:
         email: メールアドレス
         name: ネーム
         password: パスワード
         agreement: 利用規約とプライバシーポリシー
+      genre:
+        name: 間取り
       
         
         

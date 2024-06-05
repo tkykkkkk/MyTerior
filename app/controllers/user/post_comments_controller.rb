@@ -1,7 +1,8 @@
 class User::PostCommentsController < ApplicationController
-    before_action :set_post
-    before_action :authenticate_user!
-    before_action :ensure_guest_user
+  before_action :set_post
+  before_action :authenticate_user!
+  before_action :ensure_guest_user
+  
     
     def create
         @post_comment = PostComment.new(post_comment_params)

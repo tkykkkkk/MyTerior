@@ -1,37 +1,36 @@
 <div class="main-wrapper">
   <div class="top section">
     <div class="container b-top">
-        <div class="stack-24">
-            <h1 class="width-max-960 h1-top">
-                <span class="callout">My-Terior</span><br>
-                あなたのアイデアが誰かの人生に<br>
-                インテリアの楽しさをシェアしましょう
-            </h1>
-            <p>
-                ここは,My(私)とIn(terior)の出会いの場
-            <br>
-                として、インテリアを共有、発見できるプラットフォームです
-            </p>
+      <div class="stack-24">
+        <h1 class="width-max-960 h1-top">
+          <span class="callout">My-Terior</span><br>
+            あなたのアイデアが誰かの人生に<br>
+            インテリアの楽しさをシェアしましょう
+        </h1>
+        <p>
+        ここは,My(私)とIn(terior)の出会いの場
+        <br>
+        として、インテリアを共有、発見できるプラットフォームです
+        </p>
+      </div>
+        <div class="container b-top-img">       
+          <div class="w-layout">
+            <%= link_to new_user_session_path, class: "button w-button" do %>
+              ログインはこちら 
+            <% end %>
+          </div>
+          <div class="w-layout">
+            <%= link_to  new_user_registration_path, class: "button w-button" do %>
+              新規登録はこちら
+            <% end %>
+          </div>
+          <div class="w-layout">
+            <%= link_to user_guest_sign_in_path, method: :post, class: "button" do %>
+              ゲストログインはこちら(閲覧専用)
+            <%end %>
+          </div>
         </div>
-<div class="container b-top-img">       
-      <div class="w-layout">
-           <%= link_to new_user_session_path, class: "button w-button" do %>
-           ログインはこちら 
-           <% end %>
-      </div>
-      <div class="w-layout">
-         <%= link_to  new_user_registration_path, class: "button w-button" do %>
-         新規登録はこちら
-         <% end %>
-      </div>
-      <div class="w-layout">
-         <%= link_to user_guest_sign_in_path, method: :post, class: "button" do %>
-         ゲストログインはこちら(閲覧専用)
-         
-         <%end %>
-      </div>
     </div>
   </div>
-</div>
 </div>
 

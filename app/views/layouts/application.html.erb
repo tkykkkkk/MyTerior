@@ -17,7 +17,7 @@
     <!--<nav>...</nav>の間のコード-->
    <div style="min-height: 100vh; padding-bottom:66px;">
      <%= render 'partial/navbar' %>
-     <%= flash[:notice] %>
+     <%= render 'partial/flash' %>
      <%= yield %>
    </div>
    <%= render 'partial/footer' %>

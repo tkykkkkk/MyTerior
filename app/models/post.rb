@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :photos
   validates :caption, presence: true
   validate :must_have_at_least_one_photo
-
+  
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
@@ -25,5 +25,6 @@ class Post < ApplicationRecord
     error_message = I18n.locale == :ja ? "は１枚以上画像を入れてください" : 'must have at least one photo'
     errors.add(:photos, error_message) if photos.blank?
   end
+  
 end
 

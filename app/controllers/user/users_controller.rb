@@ -11,15 +11,15 @@ class User::UsersController < ApplicationController
     @userEntry=Entry.where(user_id: @user.id)
       if @user.id == current_user.id
       else
-       @currentUserEntry.each do |cu|
-         @userEntry.each do |u|
-           if cu.room_id == u.room_id then 
-             @isRoom = true 
-             @roomID = cu.room_id
-           end 
-         end 
-       end 
-       
+        @currentUserEntry.each do |cu|
+          @userEntry.each do |u|
+            if cu.room_id == u.room_id then 
+              @isRoom = true 
+              @roomID = cu.room_id
+            end 
+          end 
+        end 
+        
       if @isRoom
       else 
         @room = Room.new
@@ -29,19 +29,18 @@ class User::UsersController < ApplicationController
   end 
   
   def edit
-   @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
   end 
   
   def update
     @user = User.find_by(id: params[:id])
-    
-    if @user.update(user_params)
-      flash[:notice]="プロフィールの変更に成功しました"
-      redirect_to user_path(@user)
-    else
-      flash[:notice]="プロフィールの変更に失敗しました"
-      render :edit
-    end 
+      if @user.update(user_params)
+        flash[:notice]="プロフィールの変更に成功しました"
+        redirect_to user_path(@user)
+      else
+        flash[:notice]="プロフィールの変更に失敗しました"
+        render :edit
+      end 
   end 
   
   def withdraw
@@ -54,19 +53,17 @@ class User::UsersController < ApplicationController
   end 
   
    
-   private 
-  
+  private 
   # def user_params
   # params.require(:user).permit(:name, :profile_image, :introduction)
   # end 
-
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user
       redirect_to user_path(@user)
     end
   end 
-  
+
   def ensure_guest_user
     if current_user.email == 'guest@example.com' 
        redirect_back fallback_location: root_path, notice: "ゲストユーザーは制限されています"

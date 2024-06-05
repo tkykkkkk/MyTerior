@@ -5,12 +5,10 @@ aside {
   border-radius: 5px;
   margin-bottom: 20px;
 }
-
 /* メインコンテンツのスタイル */
 main {
   padding: 15px;
 }
-
 /* アイテムのスタイル */
 .item {
   border: 1px solid #ddd;
@@ -19,27 +17,22 @@ main {
   background-color: #fff;
   transition: transform 0.3s ease;
 }
-
 .item:hover {
   transform: scale(1.05);
 }
-
 /* カード画像のスタイル */
 .card-img-top {
   width: 100%;
   height: auto;
 }
-
 /* レスポンシブ対応 */
 @media (max-width: 767px) {
   .item {
     margin: 10px auto;
   }
-
   aside {
     margin-bottom: 20px;
   }
-
   main {
     margin-top: 20px;
   }

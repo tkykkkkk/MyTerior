@@ -1,6 +1,7 @@
 class User::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, except: [:show, :index]
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -11,7 +12,6 @@ class User::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @genre = Genre.find_by(id: params[:post][:genre_id])
-
     if @post.save
       flash[:notice] = "投稿が保存されました"
       redirect_to posts_path
@@ -67,6 +67,13 @@ class User::PostsController < ApplicationController
   def ensure_guest_user
     if current_user.email == 'guest@example.com' 
       redirect_back fallback_location: root_path, notice: "ゲストユーザーは制限されています"
+    end
+  end
+  
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    unless post.user.id == current_user.id
+      redirect_to user_path(current_user.id)
     end
   end
   

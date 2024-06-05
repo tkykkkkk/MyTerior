@@ -5,14 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     imageUpload.addEventListener('change', function(event) {
       const files = event.target.files;
       const preview = document.getElementById('image-preview');
-
       // プレビューをクリア
       preview.innerHTML = '';
-
       if (files) {
         Array.from(files).forEach(file => {
           const reader = new FileReader();
-
           reader.onload = (e) => {
             const img = document.createElement('img');
             img.src = e.target.result;
@@ -21,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             img.style.maxHeight = '200px'; // プレビュー画像の最大高さを設定
             preview.appendChild(img);
           };
-
           reader.readAsDataURL(file);
         });
       }

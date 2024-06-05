@@ -6,33 +6,33 @@ class Admin::PostsController < ApplicationController
   end 
   
   def show 
-      @post = Post.find_by(id: params[:id])
-      @post_comment = PostComment.new
-      @post_comments = @post.post_comments
+    @post = Post.find_by(id: params[:id])
+    @post_comment = PostComment.new
+    @post_comments = @post.post_comments
   end 
   
   def edit 
-      @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end 
   
   def update 
-      @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
       if @post.update(post_params)
-          redirect_to admin_post_path(@post.id)
+        redirect_to admin_post_path(@post.id)
       else 
-          render :edit 
+        render :edit 
       end
   end 
   
   def destroy
     @post = Post.find_by(id: params[:id])
-    if @post.destroy
+      if @post.destroy
         flash[:notice] = "投稿が削除されました"
         redirect_to admin_posts_path
-    else
+      else
          flash[:alert] = "投稿の削除に失敗しました"
         render :show
-    end
+      end
   end 
   
   private

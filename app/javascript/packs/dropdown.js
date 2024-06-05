@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var dropdownContent = this.nextElementSibling;
     dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
   });
-
   // クリックがドロップダウン以外で発生した場合にドロップダウンを閉じる
   window.addEventListener("click", function(event) {
     if (!event.target.matches('.dropbtn')) {

@@ -118,6 +118,34 @@ footer {
   padding: 1rem;
 }
 
+#flash-container {
+  position: absolute;
+  z-index: 1000; /* 必要に応じて調整 */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.flash {
+  padding: 15px 30px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 例: フラッシュメッセージの種類ごとに色を変える */
+.flash.notice {
+  // border-color: #4caf50;
+  // background-color: #dff0d8;
+}
+
+.flash.alert {
+  // border-color: #f44336;
+  // background-color: #f8d7da;
+}
+
+
 @media screen and (max-width: 768px) {
   .main {
     padding: 75px 0;
