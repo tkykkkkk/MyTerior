@@ -1,20 +1,27 @@
-  <div class="container">
-    <div class="row sort-buttons">
-      <%= link_to '新しい順', posts_path(latest: "true"), class: "sort-button #{params[:latest] == 'true' ? 'active' : ''}"  %>
-      <%= link_to '古い順', posts_path(old: "true"), class: "sort-button #{params[:old] == 'true' ? 'active' : ''}" %>
-      <%= link_to 'いいね数順', posts_path(favorite_count: "true"), class: "sort-button #{params[:facorite_count] == 'true' ? 'active' : ''}" %>
-    </div>
-    
-    <div class="row">
-      <% posts.each do |post| %>
-        <div class="col-md-3 col-sm-6 col-12">
-          <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 100%;">
-            <%= link_to(post_path(post)) do %>
-              <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
-            <% end %>
-          </div>
+ <div class="container">
+  <div class="row sort-buttons">
+    <%= link_to '新しい順', posts_path(latest: "true"), class: "sort-button #{params[:latest] == 'true' ? 'active' : ''}" %>
+    <%= link_to '古い順', posts_path(old: "true"), class: "sort-button #{params[:old] == 'true' ? 'active' : ''}" %>
+    <%= link_to 'いいね数順', posts_path(favorite_count: "true"), class: "sort-button #{params[:favorite_count] == 'true' ? 'active' : ''}" %>
+  </div>
+
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-3 col-sm-6 col-12">
+        <div class="item" style="margin: 10px; border: none; border-radius: 5px; width: 100%;">
+          <%= link_to(post_path(post)) do %>
+            <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+          <% end %>
         </div>
-      <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="Page navigation">
+        <%= paginate @posts %>
+      </nav>
     </div>
-    
+  </div>
 </div>

@@ -34,6 +34,7 @@ class User::PostsController < ApplicationController
       @posts = Post.all
     end 
     
+    @posts = @posts.page(params[:page]).per(12) # Adjust per page count as needed
   end
 
   def show
