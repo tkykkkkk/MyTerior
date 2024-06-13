@@ -76,3 +76,5 @@ gem "net-imap"
 gem "enum_help"
 
 gem 'cocoon'
+
+gem 'bootstrap', '~> 5.0.0'
