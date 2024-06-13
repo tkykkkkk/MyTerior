@@ -23,7 +23,17 @@ class User::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order('created_at DESC')
+    # @posts = Post.all.order('created_at DESC')
+    if params[:latest]
+      @posts = Post.latest
+    elsif params[:old]
+      @posts = Post.old
+    elsif params[:favorite_count]
+      @posts = Post.favorite_count
+    else
+      @posts = Post.all
+    end 
+    
   end
 
   def show
