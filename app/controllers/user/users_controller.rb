@@ -52,11 +52,12 @@ class User::UsersController < ApplicationController
     redirect_to root_path
   end 
   
-   
+  
   private 
   # def user_params
   # params.require(:user).permit(:name, :profile_image, :introduction)
   # end 
+  
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user
@@ -72,6 +73,7 @@ class User::UsersController < ApplicationController
   # def set_post
   #   @post = Post.find(params[:post_id])
   # end
+  
   def user_params
     params.require(:user).permit(:name, :email, :introduction, :profile_photo, :is_active)
   end 
